@@ -57,16 +57,16 @@ const Timer = () => {
 
   // Timer logic
   useEffect(() => {
-    let interval;
-    if (isRunning && timeLeft > 0) {
-      interval = setInterval(() => setTimeLeft((prev) => prev - 1), 1000);
-    } else if (timeLeft === 0) {
-      setIsRunning(false);
-      setCompletedSprints((prev) => prev + 1);
-      playSound('/sounds/complete.mp3'); // Play completion sound
-    }
-    return () => clearInterval(interval);
-  }, [isRunning, timeLeft]);
+  let interval;
+  if (isRunning && timeLeft > 0) {
+    interval = setInterval(() => setTimeLeft((prev) => prev - 1), 1000);
+  } else if (timeLeft === 0) {
+    setIsRunning(false);
+    setCompletedSprints((prev) => prev + 1);
+    playSound('/sounds/complete.mp3'); // Play completion sound
+  }
+  return () => clearInterval(interval);
+}, [isRunning, timeLeft]); // Added `timeLeft` as a dependency
 
   // Progress calculation
   const progress = useMemo(() => (timeLeft / sessionLength) * 100, [timeLeft, sessionLength]);
