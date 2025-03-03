@@ -57,7 +57,6 @@ const Timer = () => {
 
   // Timer logic
   useEffect(() => {
-<<<<<<< HEAD
     let interval;
     if (isRunning && timeLeft > 0) {
       interval = setInterval(() => setTimeLeft((prev) => prev - 1), 1000);
@@ -67,19 +66,7 @@ const Timer = () => {
       playSound('/sounds/complete.mp3'); // Play completion sound
     }
     return () => clearInterval(interval);
-  }, [isRunning, timeLeft]); // Correctly includes `timeLeft`
-=======
-  let interval;
-  if (isRunning && timeLeft > 0) {
-    interval = setInterval(() => setTimeLeft((prev) => prev - 1), 1000);
-  } else if (timeLeft === 0) {
-    setIsRunning(false);
-    setCompletedSprints((prev) => prev + 1);
-    playSound('/sounds/complete.mp3'); // Play completion sound
-  }
-  return () => clearInterval(interval);
-}, [isRunning, timeLeft]); // Added `timeLeft` as a dependency
->>>>>>> 4905013dacd6edcea79ed6b93dafce1dd01d16b8
+  }, [isRunning, timeLeft]); // Added `timeLeft` as a dependency
 
   // Progress calculation
   const progress = useMemo(() => (timeLeft / sessionLength) * 100, [timeLeft, sessionLength]);
@@ -115,14 +102,14 @@ const Timer = () => {
     if (isRunning) {
       playSound('/sounds/start.mp3');
     }
-  }, [isRunning]); // Correctly includes `isRunning`
+  }, [isRunning]);
 
   // Play pause sound when timer pauses
   useEffect(() => {
     if (!isRunning && timeLeft > 0) {
       playSound('/sounds/pause.mp3');
     }
-  }, [isRunning, timeLeft]); // Added `timeLeft` as a dependency
+  }, [isRunning, timeLeft]);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 text-gray-900 font-sans p-4">
