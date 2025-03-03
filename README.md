@@ -15,8 +15,7 @@ A **Pomodoro timer app** designed to boost productivity with customizable sessio
 
 ## Live Demo  
 
-[**Try it now!**](https://work-sprints.netlify.app){:target="_blank"}  
-
+[**Try it now!**](https://work-sprints.netlify.app)
 ---
 
 ## Technologies Used  
