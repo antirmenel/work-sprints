@@ -66,7 +66,7 @@ const Timer = () => {
       playSound('/sounds/complete.mp3'); // Play completion sound
     }
     return () => clearInterval(interval);
-  }, [isRunning, timeLeft]);
+  }, [isRunning, timeLeft]); // Correctly includes `timeLeft`
 
   // Progress calculation
   const progress = useMemo(() => (timeLeft / sessionLength) * 100, [timeLeft, sessionLength]);
@@ -102,14 +102,14 @@ const Timer = () => {
     if (isRunning) {
       playSound('/sounds/start.mp3');
     }
-  }, [isRunning]);
+  }, [isRunning]); // Correctly includes `isRunning`
 
   // Play pause sound when timer pauses
   useEffect(() => {
     if (!isRunning && timeLeft > 0) {
       playSound('/sounds/pause.mp3');
     }
-  }, [isRunning]);
+  }, [isRunning, timeLeft]); // Added `timeLeft` as a dependency
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 text-gray-900 font-sans p-4">
